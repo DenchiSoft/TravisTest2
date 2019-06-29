@@ -10,7 +10,7 @@ namespace ci_test
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("test");
+            Console.WriteLine("test_2");
             Console.ReadLine();
         }
     }

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0EB39E09-2CC4-49E2-9322-D239FCF16A31}</ProjectGuid>
+    <ProjectGuid>{C64FCBD4-7392-41CF-97B9-3EE250D05ACB}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>ci_test</RootNamespace>
     <AssemblyName>ci-test</AssemblyName>
