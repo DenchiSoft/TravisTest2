@@ -1,4 +1,6 @@
 language: csharp
+mono: none
+dotnet: 2.2.107
 solution: ci-test.sln
-mono:
-  - latest
+script:
+  - dotnet restore
