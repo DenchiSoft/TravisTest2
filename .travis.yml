@@ -1,7 +1,3 @@
 language: csharp
-mono: none
-dotnet: 2.1.502
+mono: latest
 solution: ci-test.sln
-script:
-  - dotnet restore
-  - dotnet build -c Debug
