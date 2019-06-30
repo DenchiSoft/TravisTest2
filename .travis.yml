@@ -10,3 +10,15 @@ install:
 script:
   - dotnet build -c Debug
   - dotnet test ci-test.Test/ci-test.Test.csproj
+  
+before_deploy:
+  - git config --local user.name "Denchi"
+  - git config --local user.email "denchisoft@gmail.com"
+  - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
+  - git tag $TRAVIS_TAG
+  
+deploy:
+  provider: releases
+  api_key: ${github_api_key}
+  file: "ci-test-2/bin/Debug/netcoreapp2.1/ci-test-2.dll"
+  skip_cleanup: true
