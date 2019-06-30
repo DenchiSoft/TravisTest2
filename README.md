@@ -1,6 +1,8 @@
-# TravisTest2 
+# Travis CI Test
 
-Testing Travis CI.
+Testing Travis CI for automated builds, testing and deployment.
+
+## Current Status
 
 |              | Status                                    | License                |
 |--------------|-------------------------------------------|------------------------|
