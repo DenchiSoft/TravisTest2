@@ -2,6 +2,8 @@
 
 Testing [Travis CI](https://travis-ci.org/) for automated builds, testing and deployment.
 
+A new [release](https://github.com/DenchiSoft/TravisTest2/releases) is automatically created every time a commit gets pushed, but only if the project still builds and all tests run successfully. The status of the most recent build (see below) is updated accordingly.
+
 ## Current Status
 
 |              | Status                                    | License                |
