@@ -19,10 +19,14 @@ before_deploy:
   - git config --local user.email "denchisoft@gmail.com"
   # - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
   - export TRAVIS_TAG=${TRAVIS_TAG:-R-$(date +'%A')-$(git log --format=%h -1)}
-  - git tag -m 'a' $TRAVIS_TAG
+  - git tag $TRAVIS_TAG
+  - export NAME='A1'
+  - export BODY='A2'
   
 deploy:
   provider: releases
   api_key: ${github_api_key}
+  name: ${NAME}
+  body: ${BODY}
   file: "ci-test-2/bin/Debug/netcoreapp2.1/ci-test-2.dll"
   skip_cleanup: true
