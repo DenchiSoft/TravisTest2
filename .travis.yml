@@ -7,7 +7,7 @@ solution: ci-test.sln
 install:
   - dotnet restore
   - dotnet tool install coveralls.net --version 1.0.0 --tool-path .
-  - chmox +x csmacnz.Coveralls
+  - chmod +x csmacnz.Coveralls
   - ls
   
 script:
