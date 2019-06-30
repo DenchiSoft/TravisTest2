@@ -6,7 +6,7 @@ solution: ci-test.sln
 
 install:
   - dotnet restore
-  - dotnet tool install -g coveralls.net --version 1.0.0
+  - dotnet tool install coveralls.net --version 1.0.0 --tool-path .
   - ls
   
 script:
