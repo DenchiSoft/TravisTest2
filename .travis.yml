@@ -21,7 +21,7 @@ before_deploy:
   - export TRAVIS_TAG=${TRAVIS_TAG:-R-$(date +'%a')-$(git log --format=%h -1)}
   - git tag $TRAVIS_TAG
   - export NAME=${NAME:-Release' '$(date +'%A')-$(git log --format=%h -1)}
-  - export BODY=${BODY:-$(git log --pretty=format:"This is an automated release triggered by commit **%h** by **%an**.")}
+  - export BODY=${BODY:-$(git log --pretty=format:"This is an automated release triggered by commit %h by %an.")}
   
 deploy:
   provider: releases
