@@ -9,4 +9,4 @@ install:
 
 script:
   - dotnet build -c Debug
-  - dotnet test ci-test.Test\ci-test.Test.csproj
+  - dotnet test ci-test.Test/ci-test.Test.csproj
