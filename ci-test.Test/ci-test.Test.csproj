@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ci-test\ci-test.csproj" />
+    <ProjectReference Include="..\ci-test-2\ci-test-2.csproj" />
   </ItemGroup>
 
 </Project>
