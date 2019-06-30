@@ -6,11 +6,11 @@ solution: ci-test.sln
 
 install:
   - dotnet restore
-
+  - dotnet tool install -g coveralls.net --version 1.0.0
+  
 script:
   - dotnet build -c Debug
   - dotnet test ci-test.Test/ci-test.Test.csproj /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
-  - dotnet tool install coveralls.net --version 1.0.0 --tool-path .
   - csmacnz.Coveralls --opencover -i ci-test.Test/coverage.opencover.xml --useRelativePaths
   
 before_deploy:
