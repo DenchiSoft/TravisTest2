@@ -4,33 +4,34 @@ mono: none
 dotnet: 2.1.502
 solution: ci-test.sln
 
-install:
-  - dotnet restore
-  - dotnet tool install coveralls.net --version 1.0.0 --tool-path .
-  - chmod +x csmacnz.Coveralls
+jobs:
+  include:
+    - stage: abcde
+      install:
+        - dotnet restore
+        - dotnet tool install coveralls.net --version 1.0.0 --tool-path .
+        - chmod +x csmacnz.Coveralls   
+      script:
+        - dotnet build -c Debug
+        - dotnet test ci-test.Test/ci-test.Test.csproj /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+        - ./csmacnz.Coveralls --opencover -i ci-test.Test/coverage.opencover.xml --useRelativePaths
+      before_deploy:
+        - git config --local user.name "Denchi"
+        - git config --local user.email "denchisoft@gmail.com"
+        # - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
+        - export TRAVIS_TAG=${TRAVIS_TAG:-R-$(date +'%a')-$(git log --format=%h -1)}
+        - git tag $TRAVIS_TAG
+        - export NAME=${NAME:-Release' '$(date +'%A')-$(git log --format=%h -1)}
+        - export BODY=$(git log -1 --pretty=format:"This is an automated release triggered by commit **%h** by **%an**.<br><br>Deployed by **Travis CI** at *%ad*")
+        - echo $BODY
+        - echo ${BODY}  
+      deploy:
+        provider: releases
+        api_key: ${github_api_key}
+        name: ${NAME}
+        body: ${BODY}
+        file:
+          - "ci-test-2/bin/Debug/netcoreapp2.1/ci-test-2.dll" 
+          - "ci-test.Test/coverage.opencover.xml"
+        skip_cleanup: true
   
-script:
-  - dotnet build -c Debug
-  - dotnet test ci-test.Test/ci-test.Test.csproj /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
-  - ./csmacnz.Coveralls --opencover -i ci-test.Test/coverage.opencover.xml --useRelativePaths
-  
-before_deploy:
-  - git config --local user.name "Denchi"
-  - git config --local user.email "denchisoft@gmail.com"
-  # - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
-  - export TRAVIS_TAG=${TRAVIS_TAG:-R-$(date +'%a')-$(git log --format=%h -1)}
-  - git tag $TRAVIS_TAG
-  - export NAME=${NAME:-Release' '$(date +'%A')-$(git log --format=%h -1)}
-  - export BODY=$(git log -1 --pretty=format:"This is an automated release triggered by commit **%h** by **%an**.<br><br>Deployed by **Travis CI** at *%ad*")
-  - echo $BODY
-  - echo ${BODY}
-  
-deploy:
-  provider: releases
-  api_key: ${github_api_key}
-  name: ${NAME}
-  body: ${BODY}
-  file:
-    - "ci-test-2/bin/Debug/netcoreapp2.1/ci-test-2.dll" 
-    - "ci-test.Test/coverage.opencover.xml"
-  skip_cleanup: true
