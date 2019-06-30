@@ -6,7 +6,7 @@ solution: ci-test.sln
 
 jobs:
   include:
-    - stage: abcde
+    - stage: Build
       install:
         - dotnet restore
         - dotnet tool install coveralls.net --version 1.0.0 --tool-path .
@@ -24,7 +24,8 @@ jobs:
         - export NAME=${NAME:-Release' '$(date +'%A')-$(git log --format=%h -1)}
         - export BODY=$(git log -1 --pretty=format:"This is an automated release triggered by commit **%h** by **%an**.<br><br>Deployed by **Travis CI** at *%ad*")
         - echo $BODY
-        - echo ${BODY}  
+        - echo ${BODY}
+    - stage: Deploy
       deploy:
         provider: releases
         api_key: ${github_api_key}
