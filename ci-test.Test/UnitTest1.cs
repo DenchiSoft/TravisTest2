@@ -27,5 +27,15 @@ namespace ci_test.Test
             var result = _functionality.Sum(a, b);
             Assert.IsTrue(result == correct, "Result should be " + correct + ".");
         }
+
+        [DataTestMethod]
+        [DataRow(184, false, DisplayName = "Positive numbers")]
+        [DataRow(-19,  true, DisplayName = "Negative numbers")]
+        [DataRow(  0, false, DisplayName = "Zero")]
+        public void TestIsNegative(int a, bool negative)
+        {
+            var result = _functionality.IsNegative(a);
+            Assert.IsTrue(result == negative, "Result should be " + negative + ".");
+        }
     }
 }
