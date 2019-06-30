@@ -31,6 +31,6 @@ deploy:
   name: ${NAME}
   body: ${BODY}
   file:
-    - "ci-test-2/bin/Debug/netcoreapp2.1/ci-test-2.dll" 
+    - "ci-test-2/bin/Debug/netcoreapp2.1/ci-test-2.dll"
     - "ci-test.Test/coverage.opencover.xml"
   skip_cleanup: true
