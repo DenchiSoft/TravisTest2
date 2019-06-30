@@ -14,7 +14,7 @@ script:
   - dotnet build -c Debug
   - dotnet test ci-test.Test/ci-test.Test.csproj /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
   - ls
-  - csmacnz.Coveralls --opencover -i ci-test.Test/coverage.opencover.xml --useRelativePaths
+  - ./csmacnz.Coveralls --opencover -i ci-test.Test/coverage.opencover.xml --useRelativePaths
   
 before_deploy:
   - git config --local user.name "Denchi"
