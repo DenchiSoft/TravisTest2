@@ -18,15 +18,17 @@ before_deploy:
   - git config --local user.name "Denchi"
   - git config --local user.email "denchisoft@gmail.com"
   # - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
-  - export TRAVIS_TAG=${TRAVIS_TAG:-R-$(date +'%A')-$(git log --format=%h -1)}
+  - export TRAVIS_TAG=${TRAVIS_TAG:-R-$(date +'%a')-$(git log --format=%h -1)}
   - git tag $TRAVIS_TAG
-  - export NAME='A1'
-  - export BODY='A2'
+  - export NAME=${NAME:-Release' '$(date +'%A')-$(git log --format=%h -1)}
+  - export BODY='This is a test.'
   
 deploy:
   provider: releases
   api_key: ${github_api_key}
   name: ${NAME}
   body: ${BODY}
-  file: "ci-test-2/bin/Debug/netcoreapp2.1/ci-test-2.dll"
+  file:
+    - "ci-test-2/bin/Debug/netcoreapp2.1/ci-test-2.dll" 
+    - "ci-test.Test/coverage.opencover.xml"
   skip_cleanup: true
