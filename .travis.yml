@@ -8,12 +8,10 @@ install:
   - dotnet restore
   - dotnet tool install coveralls.net --version 1.0.0 --tool-path .
   - chmod +x csmacnz.Coveralls
-  - ls
   
 script:
   - dotnet build -c Debug
   - dotnet test ci-test.Test/ci-test.Test.csproj /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
-  - ls
   - ./csmacnz.Coveralls --opencover -i ci-test.Test/coverage.opencover.xml --useRelativePaths
   
 before_deploy:
