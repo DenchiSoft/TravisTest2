@@ -15,7 +15,7 @@ script:
   - ./csmacnz.Coveralls --opencover -i ci-test.Test/coverage.opencover.xml --useRelativePaths
 
 before_deploy:
-  - git config --local user.name "Denchi"
+  - git config --local user.name "Denchi-Deployment-Bot"
   - git config --local user.email "denchisoft@gmail.com"
   # - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
   - export TRAVIS_TAG=${TRAVIS_TAG:-R-$(date +'%a')-$(git log --format=%h -1)}
@@ -27,7 +27,7 @@ before_deploy:
 
 deploy:
   provider: releases
-  api_key: ${github_api_key}
+  api_key: ${github_api_key_bot}
   name: ${NAME}
   body: ${BODY}
   file:
